@@ -3,141 +3,119 @@ import {
   StyleSheet,
   Dimensions,
   ScrollView,
+  Image,
   ImageBackground,
+  Platform,
 } from 'react-native';
-import {Block, theme, Card, Text} from 'galio-framework';
-import {Avatar, Image, Badge, SearchBar, Input} from 'react-native-elements';
-import Carousel from 'react-native-snap-carousel';
+import {Block, Text, theme} from 'galio-framework';
+import LinearGradient from 'react-native-linear-gradient';
 
-const {height, width} = Dimensions.get('screen');
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {Images, materialTheme} from '../constants';
+import {HeaderHeight} from '../constants/utils';
 
-export default function Home(props) {
-  const {navigation} = props;
+const {width, height} = Dimensions.get('screen');
+const thumbMeasure = (width - 48 - 32) / 3;
 
+export default function Profile(props) {
   return (
-    <Block flex style={styles.container}>
-      <Block flex center>
+    <Block flex style={styles.profile}>
+      <Block flex>
         <ImageBackground
-          source={{
-            uri: 'https://wallpaperplay.com/walls/full/2/8/2/13508.jpg',
-            //uri:'https://lh3.googleusercontent.com/proxy/S22asP9hdILqNAc92OVvhrTpIt55Gb206qYTVp8HZC3kmJqRN0YrMB7B8xc3PvVedsRWcNpj6NeiT5lOepUQtbp7cX400JRqDO5MhuPm4ohGrDZOCaRJ0El2MGBi7hjK-Y7_OQ',
-          }}
-          style={{
-            height: height,
-            width: width,
-            marginTop: '-55%',
-            zIndex: 1,
-          }}
-        />
+          source={{uri: 'https://pbs.twimg.com/media/DNICe1qVoAA31oA.jpg'}}
+          style={styles.profileContainer}
+          imageStyle={styles.profileImage}>
+          <Block flex style={styles.profileDetails}>
+            <Block style={styles.profileTexts}>
+              <Text color="white" size={28} style={{paddingBottom: 8}}>
+                Rachel Brown
+              </Text>
+              <Block row space="between">
+                <Block row>
+                  <Block middle style={styles.pro}>
+                    <Text size={16} color="white">
+                      Pro
+                    </Text>
+                  </Block>
+                  <Text color="white" size={16} muted style={styles.seller}>
+                    Seller
+                  </Text>
+                  <Text size={16} color={materialTheme.COLORS.WARNING}>
+                    4.8 <Icon name="home" family="font-awesome" size={14} />
+                  </Text>
+                </Block>
+                <Block>
+                  <Text color={theme.COLORS.MUTED} size={16}>
+                    <Icon
+                      name="map-marker"
+                      family="font-awesome"
+                      color={theme.COLORS.MUTED}
+                      size={16}
+                    />
+                    {` `} Los Angeles, CA
+                  </Text>
+                </Block>
+              </Block>
+            </Block>
+            <LinearGradient
+              colors={['rgba(0,0,0,0)', 'rgba(0,0,0,1)']}
+              style={styles.gradient}
+            />
+          </Block>
+        </ImageBackground>
       </Block>
-      <Block center space="between" style={(styles.horizon, {zIndex: 2})}>
-        <ScrollView
-          //showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.views}>
-          <Block shadow safe>
-            <SearchBar
-              placeholder="タレントを探す"
-              lightTheme
-              round></SearchBar>
+      <Block flex style={styles.options}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <Block row space="between" style={{padding: theme.SIZES.BASE}}>
+            <Block middle>
+              <Text bold size={12} style={{marginBottom: 8}}>
+                340,000
+              </Text>
+              <Text muted size={12}>
+                Fans
+              </Text>
+            </Block>
+            <Block middle>
+              <Text bold size={12} style={{marginBottom: 8}}>
+                5
+              </Text>
+              <Text muted size={12}>
+                Bids & Offers
+              </Text>
+            </Block>
+            <Block middle>
+              <Text bold size={12} style={{marginBottom: 8}}>
+                2
+              </Text>
+              <Text muted size={12}>
+                Messages
+              </Text>
+            </Block>
           </Block>
-          <Block space="around" shadow flex card style={styles.rankingCard}>
-            <ScrollView
-              showsHorizontalScrollIndicator={false}
-              horizontal={true}
-              style={styles.horizon}>
-              <Avatar
-                rounded
-                showAccessory={true}
-                accessory={{name: 'crown', type: 'font-awesome-5'}}
-                source={{
-                  uri:
-                    'https://pbs.twimg.com/profile_images/1248480135340150785/W28cMDRi_400x400.jpg',
-                }}
-                size="large"
-                onPress={() => navigation.navigate('Onboarding')}
-              />
-              <Avatar
-                rounded
-                source={{
-                  uri:
-                    'https://pbs.twimg.com/profile_images/1192856511745118208/mlM2dOZn_400x400.jpg',
-                }}
-                size="large"
-                onPress={() => navigation.navigate('Onboarding')}
-              />
-
-              <Avatar
-                rounded
-                source={{
-                  uri:
-                    'https://blogimg.goo.ne.jp/user_image/63/90/697ade91513890a10e25bfb675f11b4e.jpg',
-                }}
-                size="large"
-                onPress={() => navigation.navigate('Onboarding')}
-              />
-
-              <Avatar
-                rounded
-                source={{
-                  uri:
-                    'https://img1.girl-secret.com/wp-content/uploads/2017/06/4cda66bc31061f0cc2e84776b6e79492.jpg',
-                }}
-                size="large"
-                onPress={() => navigation.navigate('Onboarding')}
-              />
-              <Avatar
-                rounded
-                source={{
-                  uri:
-                    'https://img1.girl-secret.com/wp-content/uploads/2017/06/7d0ccc83016debe27ff7fa7cb695a8df.jpg',
-                }}
-                size="large"
-                onPress={() => navigation.navigate('Onboarding')}
-              />
-              <Avatar
-                rounded
-                source={{
-                  uri:
-                    'https://img1.girl-secret.com/wp-content/uploads/2017/06/6071e39f7c18b7eeb557147231d1795b.jpg',
-                }}
-                size="large"
-                onPress={() => navigation.navigate('Onboarding')}
-              />
-              <Avatar
-                rounded
-                source={{
-                  uri: 'https://www.crank-in.net/img/db/1345998_1200.jpg',
-                }}
-                size="large"
-                onPress={() => navigation.navigate('Onboarding')}
-              />
-              <Avatar
-                title="浜辺美波"
-                rounded
-                source={{
-                  uri: 'https://www.crank-in.net/img/db/1345998_1200.jpg',
-                }}
-                size="large"
-                overlayContainerStyle={styles.avatar}
-                onPress={() => navigation.navigate('Onboarding')}
-              />
-            </ScrollView>
+          <Block
+            row
+            space="between"
+            style={{paddingVertical: 16, alignItems: 'baseline'}}>
+            <Text size={16}>Recently viewed</Text>
+            <Text
+              size={12}
+              color={theme.COLORS.PRIMARY}
+              onPress={() => this.props.navigation.navigate('Home')}>
+              View All
+            </Text>
           </Block>
-          <Text h5 size={16} bold>
-            注目の新着タレント
-          </Text>
-          <Card
-            flex
-            borderless
-            style={styles.card}
-            title="Christopher Moon"
-            caption="139 minutes ago"
-            location="Los Angeles, CA"
-            avatar="http://i.pravatar.cc/100?id=skater"
-            imageStyle={styles.cardImageRadius}
-            imageBlockStyle={{padding: theme.SIZES.BASE / 2}}
-            image="https://images.unsplash.com/photo-1497802176320-541c8e8de98d?&w=1600&h=900&fit=crop&crop=entropy&q=300"
-          />
+          <Block style={{paddingBottom: -HeaderHeight * 2}}>
+            <Block row space="between" style={{flexWrap: 'wrap'}}>
+              {Images.Viewed.map((img, imgIndex) => (
+                <Image
+                  source={{uri: img}}
+                  key={`viewed-${img}`}
+                  resizeMode="cover"
+                  style={styles.thumb}
+                />
+              ))}
+            </Block>
+          </Block>
         </ScrollView>
       </Block>
     </Block>
@@ -145,35 +123,66 @@ export default function Home(props) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: theme.COLORS.BLACK,
+  profile: {
+    marginTop: Platform.OS === 'android' ? -HeaderHeight : 0,
+    marginBottom: -HeaderHeight * 2,
   },
-  rankingCard: {
-    paddingHorizontal: 5,
-    backgroundColor: 'white',
+  profileImage: {
+    width: width * 1.1,
+    height: 'auto',
   },
-  ranking: {
-    color: 'yellow',
-    backgroundColor: 'white',
-    fontSize: 30,
-    fontWeight: 'bold',
-    paddingBottom: theme.SIZES.BASE * 0.5,
-    paddingTop: theme.SIZES.BASE * 0.5,
+  profileContainer: {
+    width: width,
+    height: height / 2,
   },
-  padded: {
-    paddingHorizontal: theme.SIZES.BASE * 2,
+  profileDetails: {
+    paddingTop: theme.SIZES.BASE * 4,
+    justifyContent: 'flex-end',
     position: 'relative',
-    bottom: theme.SIZES.BASE,
   },
-  horizon: {
-    paddingVertical: theme.SIZES.BASE,
-    //shadowOpacity: 0.5,
-    //shadowRadius: 3.0,
+  profileTexts: {
+    paddingHorizontal: theme.SIZES.BASE * 2,
+    paddingVertical: theme.SIZES.BASE * 2,
+    zIndex: 2,
   },
-  badgeStyle: {
-    backgroundColor: 'black',
+  pro: {
+    backgroundColor: materialTheme.COLORS.LABEL,
+    paddingHorizontal: 6,
+    marginRight: theme.SIZES.BASE / 2,
+    borderRadius: 4,
+    height: 19,
+    width: 38,
   },
-  avatar: {
-    shadowOpacity: 0.5,
+  seller: {
+    marginRight: theme.SIZES.BASE / 2,
+  },
+  options: {
+    position: 'relative',
+    padding: theme.SIZES.BASE,
+    marginHorizontal: theme.SIZES.BASE,
+    marginTop: -theme.SIZES.BASE * 7,
+    borderTopLeftRadius: 13,
+    borderTopRightRadius: 13,
+    backgroundColor: theme.COLORS.WHITE,
+    shadowColor: 'black',
+    shadowOffset: {width: 0, height: 0},
+    shadowRadius: 8,
+    shadowOpacity: 0.2,
+    zIndex: 2,
+  },
+  thumb: {
+    borderRadius: 4,
+    marginVertical: 4,
+    alignSelf: 'center',
+    width: thumbMeasure,
+    height: thumbMeasure,
+  },
+  gradient: {
+    zIndex: 1,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: '30%',
+    position: 'absolute',
   },
 });

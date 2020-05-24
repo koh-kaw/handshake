@@ -3,7 +3,8 @@ import {withNavigation} from '@react-navigation/compat';
 import {TouchableOpacity, StyleSheet, Platform, Dimensions} from 'react-native';
 import {Button, Block, NavBar, Input, Text, theme} from 'galio-framework';
 
-import Icon from 'react-native-vector-icons';
+//import Icon from './Icon';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import materialTheme from '../constants/Theme';
 
 const {height, width} = Dimensions.get('window');
@@ -14,12 +15,12 @@ const iPhoneX = () =>
 const ChatButton = ({isWhite, style, navigation}) => (
   <TouchableOpacity
     style={[styles.button, style]}
-    onPress={() => navigation.navigate('Onboarding')}>
+    onPress={() => navigation.navigate('Home')}>
     <Icon
-      family="font-awesome-5"
+      family="font-awesome"
       size={16}
-      name="crown"
-      color={theme.COLORS[isWhite ? 'WHITE' : 'ICON']}
+      name="home"
+      //color={theme.COLORS[isWhite ? 'WHITE' : 'ICON']}
     />
     <Block middle style={styles.notify} />
   </TouchableOpacity>
@@ -28,11 +29,11 @@ const ChatButton = ({isWhite, style, navigation}) => (
 const BasketButton = ({isWhite, style, navigation}) => (
   <TouchableOpacity
     style={[styles.button, style]}
-    onPress={() => navigation.navigate('Onboarding')}>
+    onPress={() => navigation.navigate('Home')}>
     <Icon
-      family="font-awesome-5"
+      family="font-awesome"
       size={16}
-      name="crown"
+      name="home"
       color={theme.COLORS[isWhite ? 'WHITE' : 'ICON']}
     />
     <Block middle style={styles.notify} />
@@ -42,11 +43,11 @@ const BasketButton = ({isWhite, style, navigation}) => (
 const SearchButton = ({isWhite, style, navigation}) => (
   <TouchableOpacity
     style={[styles.button, style]}
-    onPress={() => navigation.navigate('Onboarding')}>
+    onPress={() => navigation.navigate('home')}>
     <Icon
       size={16}
-      family="entypo"
-      name="magnifying-glass"
+      family="font-awesome"
+      name="home"
       color={theme.COLORS[isWhite ? 'WHITE' : 'ICON']}
     />
   </TouchableOpacity>
@@ -182,7 +183,7 @@ class Header extends React.Component {
         color="black"
         style={styles.search}
         placeholder="What are you looking for?"
-        onFocus={() => navigation.navigate('Onboarding')}
+        onFocus={() => navigation.navigate('Home')}
         iconContent={
           <Icon
             size={16}
@@ -203,9 +204,9 @@ class Header extends React.Component {
         <Button
           shadowless
           style={[styles.tab, styles.divider]}
-          onPress={() => navigation.navigate('Onboarding')}>
+          onPress={() => navigation.navigate('Home')}>
           <Block row middle>
-            <Icon name="grid" family="feather" style={{paddingRight: 8}} />
+            <Icon name="home" family="font-awesome" style={{paddingRight: 8}} />
             <Text size={16} style={styles.tabTitle}>
               {tabTitleLeft || 'Categories'}
             </Text>
@@ -214,12 +215,12 @@ class Header extends React.Component {
         <Button
           shadowless
           style={styles.tab}
-          onPress={() => navigation.navigate('Onboarding')}>
+          onPress={() => navigation.navigate('Home')}>
           <Block row middle>
             <Icon
               size={16}
-              name="crown"
-              family="font-awesome-5"
+              name="home"
+              family="font-awesome"
               style={{paddingRight: 8}}
             />
             <Text size={16} style={styles.tabTitle}>

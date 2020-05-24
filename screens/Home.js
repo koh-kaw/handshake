@@ -30,6 +30,7 @@ const H_SCROLL_DISTANCE = H_MAX_HEIGHT - H_MIN_HEIGHT;
 
 export default function Home(props) {
   const {navigation} = props;
+
   const scrollOffsetY = useRef(new Animated.Value(0)).current;
   const headerScrollHeight = scrollOffsetY.interpolate({
     inputRange: [0, H_SCROLL_DISTANCE],
@@ -50,7 +51,7 @@ export default function Home(props) {
           <Text h5 bold style={styles.titleLine}>
             ランキング
           </Text>
-          <Ranking />
+          <Ranking onPress={() => navigation.navigate('Profile')} />
           <Divider />
         </Block>
 
@@ -58,7 +59,7 @@ export default function Home(props) {
           <Text h5 bold style={styles.titleLine}>
             注目の新着
           </Text>
-          <NewTalent />
+          <NewTalent onPress={() => navigation.navigate('Profile')} />
           <Divider />
         </Block>
 
@@ -66,14 +67,14 @@ export default function Home(props) {
           <Text h5 bold style={styles.titleLine}>
             あなたへのおすすめ
           </Text>
-          <Reccomend />
+          <Reccomend onPress={() => navigation.navigate('Profile')} />
         </Block>
 
         <Block style={styles.cardsContainer}>
           <Text h5 bold style={styles.titleLine}>
             今日話せるタレント
           </Text>
-          <TodayTalents />
+          <TodayTalents onPress={() => navigation.navigate('Profile')} />
         </Block>
 
         <Block style={styles.cardsContainer}>
@@ -111,13 +112,16 @@ export default function Home(props) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: theme.COLORS.WHITE,
+    //backgroundColor: theme.COLORS.WHITE,
+    backgroundColor: '#fafafa',
   },
   avatorsContainer: {
     //backgroundColor: 'black',
     paddingTop: 5,
     //backgroundColor: theme.COLORS.OFFWHITE,
-    backgroundColor: '#fafafa',
+    //backgroundColor: '#fafafa',
+    backgroundColor: 'white',
+    paddingBottom: 10,
   },
   titleLine: {
     color: theme.COLORS.BLACK,
@@ -125,10 +129,9 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
   },
   cardsContainer: {
-    //backgroundColor: 'black',
     paddingTop: 10,
-    //backgroundColor: theme.COLORS.OFFWHITE,
     backgroundColor: '#fafafa',
+    //backgroundColor: 'white',
   },
   rankingCard: {
     paddingHorizontal: 5,

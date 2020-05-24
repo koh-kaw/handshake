@@ -11,7 +11,7 @@ import Carousel from 'react-native-snap-carousel';
 
 const {height, width} = Dimensions.get('screen');
 
-const NewTalent = () => {
+const NewTalent = ({onPress}) => {
   return (
     <Block shadow style={styles.rankingCard}>
       <ScrollView
@@ -27,7 +27,7 @@ const NewTalent = () => {
               'https://images-na.ssl-images-amazon.com/images/I/81yDKKI9kUL.jpg',
           }}
           size="large"
-          onPress={() => navigation.navigate('Onboarding')}
+          onPress={onPress}
         />
         <Avatar
           rounded
@@ -36,7 +36,7 @@ const NewTalent = () => {
               'https://amd.c.yimg.jp/amd/20200522-00629670-shincho-000-3-view.jpg',
           }}
           size="large"
-          onPress={() => navigation.navigate('Onboarding')}
+          onPress={onPress}
         />
 
         <Avatar
@@ -45,7 +45,7 @@ const NewTalent = () => {
             uri: 'https://grapee.jp/wp-content/uploads/s-10473_01.jpg',
           }}
           size="large"
-          onPress={() => navigation.navigate('Onboarding')}
+          onPress={onPress}
         />
 
         <Avatar
@@ -55,7 +55,7 @@ const NewTalent = () => {
               'https://m.media-amazon.com/images/I/415ZP4B5ObL.CR0,0,351,351.jpg',
           }}
           size="large"
-          onPress={() => navigation.navigate('Onboarding')}
+          onPress={onPress}
         />
         <Avatar
           rounded
@@ -64,7 +64,7 @@ const NewTalent = () => {
               'https://img1.girl-secret.com/wp-content/uploads/2017/06/7d0ccc83016debe27ff7fa7cb695a8df.jpg',
           }}
           size="large"
-          onPress={() => navigation.navigate('Onboarding')}
+          onPress={onPress}
         />
         <Avatar
           rounded
@@ -73,15 +73,15 @@ const NewTalent = () => {
               'https://img1.girl-secret.com/wp-content/uploads/2017/06/6071e39f7c18b7eeb557147231d1795b.jpg',
           }}
           size="large"
-          onPress={() => navigation.navigate('Onboarding')}
+          onPress={onPress}
         />
         <Avatar
           rounded
           source={{
-            uri: 'https://www.crank-in.net/img/db/1345998_1200.jpg',
+            uri: 'https://pbs.twimg.com/media/D2VcmU_UcAEPrZN.jpg',
           }}
           size="large"
-          onPress={() => navigation.navigate('Onboarding')}
+          onPress={onPress}
         />
         <Avatar
           title="浜辺美波"
@@ -91,7 +91,7 @@ const NewTalent = () => {
           }}
           size="large"
           overlayContainerStyle={styles.avatar}
-          onPress={() => navigation.navigate('Onboarding')}
+          onPress={onPress}
         />
       </ScrollView>
     </Block>

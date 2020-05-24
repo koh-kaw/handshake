@@ -11,7 +11,7 @@ import Carousel from 'react-native-snap-carousel';
 
 const {height, width} = Dimensions.get('screen');
 
-const Reccomend = () => {
+const Reccomend = ({onPress}) => {
   //export default function Ranking(props) {
   //const {navigation} = props;
   return (
@@ -33,6 +33,7 @@ const Reccomend = () => {
           imageBlockStyle={styles.imageBlockStyle}
           footerStyle={styles.cardFooter}
           image="https://images-na.ssl-images-amazon.com/images/I/81yDKKI9kUL.jpg"
+          onPress={onPress}
         />
         <Card
           //borderless
@@ -46,6 +47,7 @@ const Reccomend = () => {
           //imageBlockStyle={{padding: theme.SIZES.BASE / 2}}
           footerStyle={styles.cardFooter}
           image="https://img1.girl-secret.com/wp-content/uploads/2017/06/6071e39f7c18b7eeb557147231d1795b.jpg"
+          onPress={onPress}
         />
         <Card
           //borderless
@@ -59,6 +61,7 @@ const Reccomend = () => {
           //imageBlockStyle={{padding: theme.SIZES.BASE / 2}}
           footerStyle={styles.cardFooter}
           image="https://m.media-amazon.com/images/I/415ZP4B5ObL.CR0,0,351,351.jpg"
+          onPress={onPress}
         />
       </ScrollView>
     </Block>

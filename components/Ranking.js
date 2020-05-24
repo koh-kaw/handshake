@@ -6,12 +6,17 @@ import {
   ImageBackground,
 } from 'react-native';
 import {Block, theme, Card, Text} from 'galio-framework';
+import {withNavigation} from '@react-navigation/compat';
 import {Avatar, Image, Badge, SearchBar, Input} from 'react-native-elements';
 import Carousel from 'react-native-snap-carousel';
+import {useNavigation} from '@react-navigation/native';
 
 const {height, width} = Dimensions.get('screen');
 
-const Ranking = () => {
+const Ranking = ({onPress}) => {
+  const navigation = useNavigation();
+  //const navigation = props;
+  //const navigation = useNavigation();
   return (
     //<Block center space="between" style={(styles.horizon, {zIndex: 2})}>
     <Block shadow style={styles.rankingCard}>
@@ -28,7 +33,7 @@ const Ranking = () => {
               'https://pbs.twimg.com/profile_images/1248480135340150785/W28cMDRi_400x400.jpg',
           }}
           size={90}
-          onPress={() => navigation.navigate('Onboarding')}
+          onPress={onPress}
         />
         <Avatar
           rounded
@@ -37,7 +42,7 @@ const Ranking = () => {
               'https://pbs.twimg.com/profile_images/1192856511745118208/mlM2dOZn_400x400.jpg',
           }}
           size={85}
-          onPress={() => navigation.navigate('Onboarding')}
+          onPress={onPress}
         />
 
         <Avatar
@@ -47,7 +52,7 @@ const Ranking = () => {
               'https://blogimg.goo.ne.jp/user_image/63/90/697ade91513890a10e25bfb675f11b4e.jpg',
           }}
           size={80}
-          onPress={() => navigation.navigate('Onboarding')}
+          onPress={onPress}
         />
 
         <Avatar
@@ -57,7 +62,7 @@ const Ranking = () => {
               'https://img1.girl-secret.com/wp-content/uploads/2017/06/4cda66bc31061f0cc2e84776b6e79492.jpg',
           }}
           size="large"
-          onPress={() => navigation.navigate('Onboarding')}
+          onPress={onPress}
         />
         <Avatar
           rounded
@@ -66,7 +71,7 @@ const Ranking = () => {
               'https://img1.girl-secret.com/wp-content/uploads/2017/06/7d0ccc83016debe27ff7fa7cb695a8df.jpg',
           }}
           size="large"
-          onPress={() => navigation.navigate('Onboarding')}
+          onPress={onPress}
         />
         <Avatar
           rounded
@@ -75,15 +80,16 @@ const Ranking = () => {
               'https://img1.girl-secret.com/wp-content/uploads/2017/06/6071e39f7c18b7eeb557147231d1795b.jpg',
           }}
           size="large"
-          onPress={() => navigation.navigate('Onboarding')}
+          onPress={onPress}
         />
         <Avatar
           rounded
           source={{
-            uri: 'https://www.crank-in.net/img/db/1345998_1200.jpg',
+            uri:
+              'https://d1jo5b1m9v3ic.cloudfront.net/item/i793989/s917428f232a37735314fbd44ef9434da2612949-large.jpg',
           }}
           size="large"
-          onPress={() => navigation.navigate('Onboarding')}
+          onPress={onPress}
         />
         <Avatar
           title="浜辺美波"
@@ -93,7 +99,7 @@ const Ranking = () => {
           }}
           size="large"
           overlayContainerStyle={styles.avatar}
-          onPress={() => navigation.navigate('Onboarding')}
+          onPress={onPress}
         />
       </ScrollView>
     </Block>
@@ -109,7 +115,7 @@ const styles = StyleSheet.create({
   },
   rankingCard: {
     paddingHorizontal: 5,
-    //backgroundColor: 'white',
+    backgroundColor: 'white',
   },
   ranking: {
     color: 'yellow',

@@ -11,7 +11,7 @@ import Carousel from 'react-native-snap-carousel';
 
 const {height, width} = Dimensions.get('screen');
 
-export default function Home(props) {
+export default function Talents(props) {
   const {navigation} = props;
 
   return (

@@ -43,6 +43,7 @@
 - react-native-safe-area-context
 - react-native-animatable
 - react-native-snap-carousel
+- react-native-linear-gradient
 
 # for iOS
 
