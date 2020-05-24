@@ -20,8 +20,16 @@
 
 # Librarys
 
+- react-native-splash-screen
+- react-native-app-intro
+- redux
+- react-redux
+- react-native-community/async-storage
+- redux-persist
+- redux-devtools-extension
 - galio-framework
 - react-native-vector-icons
+- react-native-elements
 - @react-navigation/native
   - react-native-reanimated
   - react-native-gesture-handler
@@ -30,7 +38,11 @@
   - @react-native-community/masked-view
 - @react-navigation/stack
 - @react-navigation/drawer
+- @react-navigation/compat
+- @react-navigation/bottom-tabs
 - react-native-safe-area-context
+- react-native-animatable
+- react-native-snap-carousel
 
 # for iOS
 

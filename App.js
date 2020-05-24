@@ -1,28 +1,15 @@
 import React from 'react';
-import {StatusBar, Platform} from 'react-native';
-import {GalioProvider, Block} from 'galio-framework';
-import materialTheme from './constants/Theme';
-import {enableScreens} from 'react-native-screens';
-enableScreens();
+import AppNavigator from './navigation/AppNavigator';
+import {Provider} from 'react-redux';
+import store, {persistor} from './store';
+import {PersistGate} from 'redux-persist/integration/react';
 
-import {NavigationContainer} from '@react-navigation/native';
-import Screens from './navigation/Screens';
-
-export default class App extends React.Component {
-  state = {
-    isLoadingComplete: false,
-  };
-
-  render() {
-    return (
-      <NavigationContainer>
-        <GalioProvider theme={materialTheme}>
-          <Block flex>
-            {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-            <Screens />
-          </Block>
-        </GalioProvider>
-      </NavigationContainer>
-    );
-  }
+export default function App() {
+  return (
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <AppNavigator />
+      </PersistGate>
+    </Provider>
+  );
 }

@@ -1,148 +1,169 @@
-import React from 'react';
-import {StyleSheet, Dimensions, ScrollView} from 'react-native';
-import {Button, Block, Text, Input, theme} from 'galio-framework';
-import {Icon} from 'react-native-elements';
-import {Product} from '../components';
+import React, {useRef, useState} from 'react';
+import {
+  StyleSheet,
+  Dimensions,
+  ScrollView,
+  ImageBackground,
+  Animated,
+  View,
+} from 'react-native';
+import {Block, theme, Card, Text} from 'galio-framework';
+import {
+  Avatar,
+  Image,
+  Badge,
+  SearchBar,
+  Input,
+  Divider,
+} from 'react-native-elements';
+import Carousel from 'react-native-snap-carousel';
 
-const {width} = Dimensions.get('screen');
-import products from '../constants/products';
+import Ranking from '../components/Ranking';
+import NewTalent from '../components/NewTalent';
+import Reccomend from '../components/Reccomend';
+import TodayTalents from '../components/TodayTalents';
 
-export default class Home extends React.Component {
-  renderSearch = () => {
-    const {navigation} = this.props;
-    const iconCamera = (
-      <Icon
-        size={16}
-        color={theme.COLORS.MUTED}
-        name="zoom-in"
-        family="material"
-      />
-    );
+const {height, width} = Dimensions.get('screen');
+const H_MAX_HEIGHT = 150;
+const H_MIN_HEIGHT = 52;
+const H_SCROLL_DISTANCE = H_MAX_HEIGHT - H_MIN_HEIGHT;
 
-    return (
-      <Input
-        right
-        color="black"
-        style={styles.search}
-        iconContent={iconCamera}
-        placeholder="What are you looking for?"
-        onFocus={() => navigation.navigate('Onboarding')}
-      />
-    );
-  };
+export default function Home(props) {
+  const {navigation} = props;
+  const scrollOffsetY = useRef(new Animated.Value(0)).current;
+  const headerScrollHeight = scrollOffsetY.interpolate({
+    inputRange: [0, H_SCROLL_DISTANCE],
+    outputRange: [H_MAX_HEIGHT, H_MIN_HEIGHT],
+    extrapolate: 'clamp',
+  });
 
-  renderTabs = () => {
-    const {navigation} = this.props;
-
-    return (
-      <Block row style={styles.tabs}>
-        <Button
-          shadowless
-          style={[styles.tab, styles.divider]}
-          onPress={() => navigation.navigate('Profile')}>
-          <Block row middle>
-            <Icon name="grid" family="feather" style={{paddingRight: 8}} />
-            <Text size={16} style={styles.tabTitle}>
-              Categories
-            </Text>
-          </Block>
-        </Button>
-        <Button
-          shadowless
-          style={styles.tab}
-          onPress={() => navigation.navigate('Home')}>
-          <Block row middle>
-            <Icon
-              size={16}
-              name="home"
-              family="material"
-              style={{paddingRight: 8}}
-            />
-            <Text size={16} style={styles.tabTitle}>
-              Best Deals
-            </Text>
-          </Block>
-        </Button>
-      </Block>
-    );
-  };
-
-  renderProducts = () => {
-    return (
+  return (
+    <Block flex safe style={styles.container}>
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.products}>
-        <Block flex>
-          <Product product={products[0]} horizontal />
-          <Block flex row>
-            <Product
-              product={products[1]}
-              style={{marginRight: theme.SIZES.BASE}}
-            />
-            <Product product={products[2]} />
-          </Block>
-          <Product product={products[3]} horizontal />
-          <Product product={products[4]} full />
+        onScroll={Animated.event([
+          {nativeEvent: {contentOffset: {y: scrollOffsetY}}},
+        ])}
+        scrollEventThrottle={16}>
+        <View style={{paddingTop: H_MAX_HEIGHT}}></View>
+        <Block style={styles.avatorsContainer}>
+          <Text h5 bold style={styles.titleLine}>
+            ランキング
+          </Text>
+          <Ranking />
+          <Divider />
+        </Block>
+
+        <Block style={styles.avatorsContainer}>
+          <Text h5 bold style={styles.titleLine}>
+            注目の新着
+          </Text>
+          <NewTalent />
+          <Divider />
+        </Block>
+
+        <Block style={styles.cardsContainer}>
+          <Text h5 bold style={styles.titleLine}>
+            あなたへのおすすめ
+          </Text>
+          <Reccomend />
+        </Block>
+
+        <Block style={styles.cardsContainer}>
+          <Text h5 bold style={styles.titleLine}>
+            今日話せるタレント
+          </Text>
+          <TodayTalents />
+        </Block>
+
+        <Block style={styles.cardsContainer}>
+          <Text h5 bold style={styles.titleLine}>
+            イベント
+          </Text>
+          <TodayTalents />
         </Block>
       </ScrollView>
-    );
-  };
-
-  render() {
-    return (
-      <Block flex center style={styles.home}>
-        {this.renderProducts()}
-      </Block>
-    );
-  }
+      <Animated.View
+        style={{
+          position: 'absolute',
+          left: 0,
+          right: 0,
+          top: 0,
+          height: headerScrollHeight,
+          width: '100%',
+          overflow: 'hidden',
+          zIndex: 999,
+          // STYLE
+          borderBottomColor: '#EFEFF4',
+          borderBottomWidth: 2,
+          padding: 10,
+          backgroundColor: 'blue',
+        }}>
+        <Image
+          source={{uri: 'https://via.placeholder.com/300'}}
+          style={{flex: 1}}
+          resizeMode={'contain'}
+        />
+      </Animated.View>
+    </Block>
+  );
 }
 
 const styles = StyleSheet.create({
-  home: {
-    width: width,
-  },
-  search: {
-    height: 48,
-    width: width - 32,
-    marginHorizontal: 16,
-    borderWidth: 1,
-    borderRadius: 3,
-  },
-  header: {
+  container: {
     backgroundColor: theme.COLORS.WHITE,
-    shadowColor: theme.COLORS.BLACK,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowRadius: 8,
-    shadowOpacity: 0.2,
-    elevation: 4,
-    zIndex: 2,
   },
-  tabs: {
-    marginBottom: 24,
-    marginTop: 10,
-    elevation: 4,
+  avatorsContainer: {
+    //backgroundColor: 'black',
+    paddingTop: 5,
+    //backgroundColor: theme.COLORS.OFFWHITE,
+    backgroundColor: '#fafafa',
   },
-  tab: {
-    backgroundColor: theme.COLORS.TRANSPARENT,
-    width: width * 0.5,
-    borderRadius: 0,
-    borderWidth: 0,
-    height: 24,
-    elevation: 0,
+  titleLine: {
+    color: theme.COLORS.BLACK,
+    paddingTop: 10,
+    paddingBottom: 8,
   },
-  tabTitle: {
-    lineHeight: 19,
-    fontWeight: '300',
+  cardsContainer: {
+    //backgroundColor: 'black',
+    paddingTop: 10,
+    //backgroundColor: theme.COLORS.OFFWHITE,
+    backgroundColor: '#fafafa',
   },
-  divider: {
-    borderRightWidth: 0.3,
-    borderRightColor: theme.COLORS.MUTED,
+  rankingCard: {
+    paddingHorizontal: 5,
+    backgroundColor: 'white',
   },
-  products: {
-    width: width - theme.SIZES.BASE * 2,
-    paddingVertical: theme.SIZES.BASE * 2,
+  horizonContainer: {},
+  ranking: {
+    color: 'yellow',
+    backgroundColor: 'white',
+    fontSize: 30,
+    fontWeight: 'bold',
+    paddingBottom: theme.SIZES.BASE * 0.5,
+    paddingTop: theme.SIZES.BASE * 0.5,
+  },
+  padded: {
+    paddingHorizontal: theme.SIZES.BASE * 2,
+    position: 'relative',
+    bottom: theme.SIZES.BASE,
+  },
+  horizon: {
+    paddingVertical: theme.SIZES.BASE,
+    //shadowOpacity: 0.5,
+    //shadowRadius: 3.0,
+  },
+  badgeStyle: {
+    backgroundColor: 'black',
+  },
+  avatar: {
+    shadowOpacity: 0.5,
+  },
+  footer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: 'red',
   },
 });

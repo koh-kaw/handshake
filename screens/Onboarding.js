@@ -8,6 +8,7 @@ import {
   Animated,
 } from 'react-native';
 import {Block, Button, Text, theme} from 'galio-framework';
+import * as Animatable from 'react-native-animatable';
 
 const {height, width} = Dimensions.get('screen');
 

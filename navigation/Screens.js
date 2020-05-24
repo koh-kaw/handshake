@@ -1,54 +1,31 @@
 import * as React from 'react';
-import {Button, View} from 'react-native';
+import {Button, View, Dimensions} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {Icon} from 'react-native-vector-icons';
+
 import OnboardingScreen from '../screens/Onboarding';
-/*
-function HomeScreen({navigation}) {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Button
-        title="Go to Profile"
-        onPress={() => navigation.navigate('Profile')}
-      />
-    </View>
-  );
-}
-*/
+import HomeScreen from '../screens/Home';
 
-function ProfileScreen({navigation}) {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Button
-        title="Go to Notifications"
-        onPress={() => navigation.navigate('Notifications')}
-      />
-      <Button title="Go back" onPress={() => navigation.goBack()} />
-    </View>
-  );
-}
+import {Header} from '../components';
 
-function NotificationsScreen({navigation}) {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Button
-        title="Go to Settings"
-        onPress={() => navigation.navigate('Settings')}
-      />
-      <Button title="Go back" onPress={() => navigation.goBack()} />
-    </View>
-  );
-}
-
-function SettingsScreen({navigation}) {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Button title="Go back" onPress={() => navigation.goBack()} />
-    </View>
-  );
-}
-
+const {width} = Dimensions.get('screen');
 const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+
+const HomeStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen name="Onboarding" component={OnboardingStack} />
+    </Stack.Navigator>
+  );
+};
 
 function OnboardingStack() {
   return (
@@ -60,19 +37,33 @@ function OnboardingStack() {
           headerTransparent: true,
         }}
       />
-      <Stack.Screen name="App" component={OnboardingStack} />
+      <Stack.Screen name="Home" component={HomeStack} />
     </Stack.Navigator>
   );
 }
 
-export default function MyStack() {
+const screenOption = ({route}) => ({
+  tabBarIcon: ({color, size}) => {
+    let iconName;
+
+    if (route.name === 'Home') {
+      iconName = 'home';
+      family = 'font-awesome';
+    } else if (route.name === 'Clip') {
+      iconName = 'bookmark';
+      family = 'font-awesome';
+    }
+    return <Icon name={iconName} size={size} color={color} />;
+  },
+});
+
+export default AppNavigator = () => {
   return (
-    <Stack.Navigator mode="card" headerMode="none">
-      <Stack.Screen name="Onboarding" component={OnboardingStack} />
-
-      <Stack.Screen name="Notifications" component={NotificationsScreen} />
-      <Stack.Screen name="Profile" component={ProfileScreen} />
-      <Stack.Screen name="Settings" component={SettingsScreen} />
+    <Stack.Navigator>
+      <Tab.Navigator screenOptions={screenOption}>
+        <Tab.Screen name="Home" component={HomeStack} />
+        <Tab.Screen name="Onboarding" component={OnboardingStack} />
+      </Tab.Navigator>
     </Stack.Navigator>
   );
-}
+};
