@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>389988718322-eid8socuvl6dha1da3ur4h6i3lbrjhpn.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.389988718322-eid8socuvl6dha1da3ur4h6i3lbrjhpn</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>389988718322-hmtc12u8ucgd4i34jl5cmo9o28glt9on.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCllkcMovi2oewslt_USZVxr7Q2I76KOxI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>389988718322</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.handshake</string>
+	<key>PROJECT_ID</key>
+	<string>handshake-401aa</string>
+	<key>STORAGE_BUCKET</key>
+	<string>handshake-401aa.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:389988718322:ios:953a679e46028668d4226b</string>
+	<key>DATABASE_URL</key>
+	<string>https://handshake-401aa.firebaseio.com</string>
+</dict>
+</plist>
